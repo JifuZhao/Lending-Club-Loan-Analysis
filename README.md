@@ -9,7 +9,13 @@ The goal of this project is to analyze and model Lending Club's issued loans.
 ## Data
 The loan data is available through multiple sources, including [Kaggle Lending Club Loan Data](https://www.kaggle.com/wendykan/lending-club-loan-data), [All Lending Club Load Data](https://www.kaggle.com/wordsforthewise/lending-club), or [Lending Club Statistics](https://www.lendingclub.com/info/download-data.action). In this project, I use the data from [Kaggle Lending Club Loan Data](https://www.kaggle.com/wendykan/lending-club-loan-data), which contains the issued load data from 2007 to 2015. In addition, I also use the issued loan data from 2016 from [Lending Club Statistics](https://www.lendingclub.com/info/download-data.action).
 
-## Data Cleaning and Visualization
+## Data Cleaning 
+
+
+## Feature Engineering
+
+
+## Visualization
 
 
 ## Sampling for Imbalance Classification
@@ -27,11 +33,12 @@ The loan data is available through multiple sources, including [Kaggle Lending C
 
 
 ## Notebook Explanation
-0. Summary.ipynb:
-1. Data Collection and Concatenation.ipynb:
-2. Data Cleaning.ipynb:
-3. Data Visualization and Feature Engineering.ipynb:
-4. Machine Learning.ipynb:
+0. [Summary.ipynb:]()
+1. [Data Collection and Concatenation.ipynb:]()
+2. [Data Cleaning.ipynb:]()
+3. [Feature Engineering.ipynb:]()
+4. [Data Visualization.ipynb:]()
+5. [Machine Learning.ipynb:]()
 
 
 ### Note:
