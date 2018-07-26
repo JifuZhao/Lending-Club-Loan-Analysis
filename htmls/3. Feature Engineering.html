@@ -11833,17 +11833,17 @@ div#notebook {
 <pre>Train:
 &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 722143 entries, 0 to 722142
-Columns: 70 entries, loan_amnt to target
-dtypes: float64(14), int64(38), object(18)
-memory usage: 385.7+ MB
+Columns: 68 entries, loan_amnt to target
+dtypes: float64(14), int64(38), object(16)
+memory usage: 374.6+ MB
 None 
 
 Test:
 &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 98727 entries, 0 to 98726
-Columns: 70 entries, loan_amnt to target
-dtypes: float64(14), int64(38), object(18)
-memory usage: 52.7+ MB
+Columns: 68 entries, loan_amnt to target
+dtypes: float64(14), int64(38), object(16)
+memory usage: 51.2+ MB
 None
 </pre>
 </div>
@@ -12714,28 +12714,6 @@ Ratio:		 3.1938
     </tr>
     <tr>
       <th>66</th>
-      <td>hardship_flag</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>object</td>
-      <td>NaN</td>
-      <td>0.238444</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>67</th>
-      <td>debt_settlement_flag</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>object</td>
-      <td>NaN</td>
-      <td>0.238444</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>68</th>
       <td>year</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -12746,7 +12724,7 @@ Ratio:		 3.1938
       <td>2</td>
     </tr>
     <tr>
-      <th>69</th>
+      <th>67</th>
       <td>target</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -13341,28 +13319,6 @@ Ratio:		 3.1938
       <td>2</td>
       <td>2</td>
     </tr>
-    <tr>
-      <th>66</th>
-      <td>hardship_flag</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>object</td>
-      <td>NaN</td>
-      <td>0.238444</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>67</th>
-      <td>debt_settlement_flag</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>object</td>
-      <td>NaN</td>
-      <td>0.238444</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -13683,18 +13639,22 @@ Name: home_ownership, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="6.-installment">6. <code>installment</code><a class="anchor-link" href="#6.-installment">&#182;</a></h3><p>For <code>installment</code>, it's better to use <code>installment</code> / <code>loan_amnt</code></p>
+<h3 id="6.-installment-,-annual_inc,-and-loan_amnt">6. <code>installment</code> , <code>annual_inc</code>, and <code>loan_amnt</code><a class="anchor-link" href="#6.-installment-,-annual_inc,-and-loan_amnt">&#182;</a></h3><p>For <code>installment</code>, it's better to use <code>installment</code> / <code>loan_amnt</code></p>
+<p>For <code>loan_amnt</code>, it's reasonable to also keep the variable of <code>loan_amnt</code> / <code>annual_inc</code></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;installment_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;installment&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;loan_amnt&#39;</span><span class="p">]</span>
 <span class="n">test</span><span class="p">[</span><span class="s1">&#39;installment_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;installment&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;loan_amnt&#39;</span><span class="p">]</span>
+
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;loan_to_inc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;loan_amnt&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;annual_inc&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">test</span><span class="p">[</span><span class="s1">&#39;loan_to_inc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;loan_amnt&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;annual_inc&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="n">train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="s1">&#39;installment&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="s1">&#39;installment&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -13725,7 +13685,7 @@ Name: home_ownership, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get missing information</span>
@@ -13776,7 +13736,7 @@ Name: home_ownership, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[37]:</div>
+<div class="prompt output_prompt">Out[38]:</div>
 
 
 
@@ -13845,17 +13805,6 @@ Name: home_ownership, dtype: int64</pre>
     </tr>
     <tr>
       <th>3</th>
-      <td>installment</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>float64</td>
-      <td>NaN</td>
-      <td>0.238445</td>
-      <td>62435</td>
-      <td>17469</td>
-    </tr>
-    <tr>
-      <th>4</th>
       <td>grade</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13866,7 +13815,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>7</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>4</th>
       <td>sub_grade</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13877,7 +13826,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>35</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>5</th>
       <td>emp_length</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13888,7 +13837,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>10</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>6</th>
       <td>home_ownership</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13899,7 +13848,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>4</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>7</th>
       <td>annual_inc</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13910,7 +13859,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>8508</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>8</th>
       <td>verification_status</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13921,7 +13870,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>3</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>9</th>
       <td>purpose</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13932,7 +13881,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>13</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>10</th>
       <td>title</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13943,7 +13892,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>12</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>11</th>
       <td>zip_code</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13954,7 +13903,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>872</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>12</th>
       <td>addr_state</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13965,7 +13914,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>50</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>13</th>
       <td>dti</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13976,7 +13925,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>5084</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>14</th>
       <td>delinq_2yrs</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13987,7 +13936,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>22</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>15</th>
       <td>inq_last_6mths</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -13998,7 +13947,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>6</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>16</th>
       <td>open_acc</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14009,7 +13958,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>63</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>17</th>
       <td>pub_rec</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14020,7 +13969,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>18</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>18</th>
       <td>revol_bal</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14031,7 +13980,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>35234</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>19</th>
       <td>revol_util</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14042,7 +13991,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>1076</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>20</th>
       <td>total_acc</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14053,7 +14002,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>111</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>21</th>
       <td>initial_list_status</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14064,7 +14013,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>2</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>22</th>
       <td>collections_12_mths_ex_med</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14075,7 +14024,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>8</td>
     </tr>
     <tr>
-      <th>24</th>
+      <th>23</th>
       <td>application_type</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14086,7 +14035,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>2</td>
     </tr>
     <tr>
-      <th>25</th>
+      <th>24</th>
       <td>acc_now_delinq</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14097,7 +14046,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>4</td>
     </tr>
     <tr>
-      <th>26</th>
+      <th>25</th>
       <td>tot_coll_amt</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14108,7 +14057,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>3914</td>
     </tr>
     <tr>
-      <th>27</th>
+      <th>26</th>
       <td>tot_cur_bal</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14119,7 +14068,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>82635</td>
     </tr>
     <tr>
-      <th>28</th>
+      <th>27</th>
       <td>total_rev_hi_lim</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14130,7 +14079,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>4381</td>
     </tr>
     <tr>
-      <th>29</th>
+      <th>28</th>
       <td>acc_open_past_24mths</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14141,7 +14090,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>42</td>
     </tr>
     <tr>
-      <th>30</th>
+      <th>29</th>
       <td>avg_cur_bal</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14152,7 +14101,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>36423</td>
     </tr>
     <tr>
-      <th>31</th>
+      <th>30</th>
       <td>bc_open_to_buy</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14163,7 +14112,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>33540</td>
     </tr>
     <tr>
-      <th>32</th>
+      <th>31</th>
       <td>bc_util</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14174,7 +14123,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>1131</td>
     </tr>
     <tr>
-      <th>33</th>
+      <th>32</th>
       <td>chargeoff_within_12_mths</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14185,7 +14134,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>8</td>
     </tr>
     <tr>
-      <th>34</th>
+      <th>33</th>
       <td>delinq_amnt</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14196,7 +14145,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>297</td>
     </tr>
     <tr>
-      <th>35</th>
+      <th>34</th>
       <td>mo_sin_old_il_acct</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14207,7 +14156,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>427</td>
     </tr>
     <tr>
-      <th>36</th>
+      <th>35</th>
       <td>mo_sin_old_rev_tl_op</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14218,7 +14167,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>657</td>
     </tr>
     <tr>
-      <th>37</th>
+      <th>36</th>
       <td>mo_sin_rcnt_rev_tl_op</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14229,7 +14178,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>198</td>
     </tr>
     <tr>
-      <th>38</th>
+      <th>37</th>
       <td>mo_sin_rcnt_tl</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14240,7 +14189,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>129</td>
     </tr>
     <tr>
-      <th>39</th>
+      <th>38</th>
       <td>mort_acc</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14251,7 +14200,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>23</td>
     </tr>
     <tr>
-      <th>40</th>
+      <th>39</th>
       <td>mths_since_recent_bc</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14262,7 +14211,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>346</td>
     </tr>
     <tr>
-      <th>41</th>
+      <th>40</th>
       <td>mths_since_recent_inq</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14273,7 +14222,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>26</td>
     </tr>
     <tr>
-      <th>42</th>
+      <th>41</th>
       <td>num_accts_ever_120_pd</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14284,7 +14233,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>34</td>
     </tr>
     <tr>
-      <th>43</th>
+      <th>42</th>
       <td>num_actv_bc_tl</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14295,7 +14244,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>28</td>
     </tr>
     <tr>
-      <th>44</th>
+      <th>43</th>
       <td>num_actv_rev_tl</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14306,7 +14255,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>44</td>
     </tr>
     <tr>
-      <th>45</th>
+      <th>44</th>
       <td>num_bc_sats</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14317,7 +14266,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>40</td>
     </tr>
     <tr>
-      <th>46</th>
+      <th>45</th>
       <td>num_bc_tl</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14328,7 +14277,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>54</td>
     </tr>
     <tr>
-      <th>47</th>
+      <th>46</th>
       <td>num_il_tl</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14339,7 +14288,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>89</td>
     </tr>
     <tr>
-      <th>48</th>
+      <th>47</th>
       <td>num_op_rev_tl</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14350,7 +14299,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>58</td>
     </tr>
     <tr>
-      <th>49</th>
+      <th>48</th>
       <td>num_rev_accts</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14361,7 +14310,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>85</td>
     </tr>
     <tr>
-      <th>50</th>
+      <th>49</th>
       <td>num_rev_tl_bal_gt_0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14372,7 +14321,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>39</td>
     </tr>
     <tr>
-      <th>51</th>
+      <th>50</th>
       <td>num_sats</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14383,7 +14332,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>63</td>
     </tr>
     <tr>
-      <th>52</th>
+      <th>51</th>
       <td>num_tl_120dpd_2m</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14394,7 +14343,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>4</td>
     </tr>
     <tr>
-      <th>53</th>
+      <th>52</th>
       <td>num_tl_30dpd</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14405,7 +14354,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>4</td>
     </tr>
     <tr>
-      <th>54</th>
+      <th>53</th>
       <td>num_tl_90g_dpd_24m</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14416,7 +14365,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>19</td>
     </tr>
     <tr>
-      <th>55</th>
+      <th>54</th>
       <td>num_tl_op_past_12m</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14427,7 +14376,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>25</td>
     </tr>
     <tr>
-      <th>56</th>
+      <th>55</th>
       <td>pct_tl_nvr_dlq</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14438,7 +14387,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>471</td>
     </tr>
     <tr>
-      <th>57</th>
+      <th>56</th>
       <td>percent_bc_gt_75</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14449,7 +14398,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>142</td>
     </tr>
     <tr>
-      <th>58</th>
+      <th>57</th>
       <td>pub_rec_bankruptcies</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14460,7 +14409,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>7</td>
     </tr>
     <tr>
-      <th>59</th>
+      <th>58</th>
       <td>tax_liens</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14471,7 +14420,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>17</td>
     </tr>
     <tr>
-      <th>60</th>
+      <th>59</th>
       <td>tot_hi_cred_lim</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14482,7 +14431,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>78239</td>
     </tr>
     <tr>
-      <th>61</th>
+      <th>60</th>
       <td>total_bal_ex_mort</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14493,7 +14442,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>65182</td>
     </tr>
     <tr>
-      <th>62</th>
+      <th>61</th>
       <td>total_bc_limit</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14504,7 +14453,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>2632</td>
     </tr>
     <tr>
-      <th>63</th>
+      <th>62</th>
       <td>total_il_high_credit_limit</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14515,29 +14464,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>55350</td>
     </tr>
     <tr>
-      <th>64</th>
-      <td>hardship_flag</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>object</td>
-      <td>NaN</td>
-      <td>0.238445</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>65</th>
-      <td>debt_settlement_flag</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>object</td>
-      <td>NaN</td>
-      <td>0.238445</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>66</th>
+      <th>63</th>
       <td>target</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14548,7 +14475,7 @@ Name: home_ownership, dtype: int64</pre>
       <td>2</td>
     </tr>
     <tr>
-      <th>67</th>
+      <th>64</th>
       <td>credit_length</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -14557,6 +14484,28 @@ Name: home_ownership, dtype: int64</pre>
       <td>0.238445</td>
       <td>66</td>
       <td>61</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>installment_ratio</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>float64</td>
+      <td>NaN</td>
+      <td>0.238445</td>
+      <td>73040</td>
+      <td>13954</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>loan_to_inc</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>float64</td>
+      <td>NaN</td>
+      <td>0.238445</td>
+      <td>146790</td>
+      <td>32152</td>
     </tr>
   </tbody>
 </table>
@@ -14571,7 +14520,7 @@ Name: home_ownership, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># save to disk</span>
@@ -14596,8 +14545,8 @@ Name: home_ownership, dtype: int64</pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training set:	 (722142, 68)
-Test set:	 (98727, 68)
+<pre>Training set:	 (722142, 67)
+Test set:	 (98727, 67)
 </pre>
 </div>
 </div>
