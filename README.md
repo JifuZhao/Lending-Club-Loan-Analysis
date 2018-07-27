@@ -39,10 +39,13 @@ The corresponding nbviewer pages are as follows:
 For binary classification problems, there are some commonly used algorithms, from the widely used [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression), to tree-based ensemble models, such as [Random Forest](https://en.wikipedia.org/wiki/Random_forest) and [Boosting](https://en.wikipedia.org/wiki/Boosting_(machine_learning) algorithms.
 
 For imbalanced classification problems, despite the naive method, there are several re-sampling based methods, including:
+- Without Sampling
 - Under-Sampling
 - Over-Sampling
 - Synthetic Minority Oversampling Technique (SMOTE)
 - Adaptive Synthetic (ADASYN) sampling
+
+Here, the performance of several commonly used algorithms under the conditions of without sampling and over-sampling are compared. The metric used here is AUC, or Area Under the ROC Curve.
 
 While the famous [scikit-learn](http://scikit-learn.org/stable/) has been widely used for a lot of problems, it requires manually transformation of categorical variable into numerical format, which is not always a good choice. There are several new packages that naively support categorical features, including [H2O](http://docs.h2o.ai/h2o/latest-stable/h2o-docs/index.html#), [LightGBM](https://lightgbm.readthedocs.io/en/latest/), and [CatBoost](https://tech.yandex.com/catboost/doc/dg/concepts/about-docpage/).
 
