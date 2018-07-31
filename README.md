@@ -6,20 +6,24 @@ LendingClub is a US peer-to-peer lending company, headquartered in San Francisco
 The goal of this project is to analyze and model Lending Club's issued loans. A summary of the whole projects can be found in the corresponding Jupyter notebook: [0. Summary.ipynb](https://github.com/JifuZhao/Lending-Club-Loan-Analysis/blob/master/0.%20Summary.ipynb).
 
 
+***
 ## Data
 The loan data is available through multiple sources, including [Kaggle Lending Club Loan Data](https://www.kaggle.com/wendykan/lending-club-loan-data), [All Lending Club Load Data](https://www.kaggle.com/wordsforthewise/lending-club), or [Lending Club Statistics](https://www.lendingclub.com/info/download-data.action). In this project, I use the data from [Kaggle Lending Club Loan Data](https://www.kaggle.com/wendykan/lending-club-loan-data), which contains the issued load data from 2007 to 2015. In addition, I also use the issued loan data from 2016 from [Lending Club Statistics](https://www.lendingclub.com/info/download-data.action).
 
 The data collection and concatenation process can be found in the corresponding notebook: [1. Data Collection and Concatenation.ipynb](https://github.com/JifuZhao/Lending-Club-Loan-Analysis/blob/master/1.%20Data%20Collection%20and%20Concatenation.ipynb).
 
 
+***
 ## Data Cleaning
 - Notebook: [2. Data Cleaning.ipynb](https://github.com/JifuZhao/Lending-Club-Loan-Analysis/blob/master/2.%20Data%20Cleaning.ipynb)
 
 
+***
 ## Feature Engineering
 - Notebook: [3. Feature Engineering.ipynb](https://github.com/JifuZhao/Lending-Club-Loan-Analysis/blob/master/3.%20Feature%20Engineering.ipynb)
 
 
+***
 ## Visualization
 - Categorical and discrete features: [4. Data Visualization - Discrete Variable.ipynb](https://github.com/JifuZhao/Lending-Club-Loan-Analysis/blob/master/4.%20Data%20Visualization%20-%20Discrete%20Variable.ipynb)
 - Numerical features: [4. Data Visualization - Numerical Variable.ipynb](https://github.com/JifuZhao/Lending-Club-Loan-Analysis/blob/master/4.%20Data%20Visualization%20-%20Numerical%20Variable.ipynb)
@@ -35,6 +39,7 @@ The corresponding nbviewer pages are as follows:
 - Summary of influential features: [4. Data Visualization Summary.ipynb](https://nbviewer.jupyter.org/github/JifuZhao/Lending-Club-Loan-Analysis/blob/master/4.%20Data%20Visualization%20Summary.ipynb)
 
 
+***
 ## Machine Learning
 For binary classification problems, there are some commonly used algorithms, from the widely used [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression), to tree-based ensemble models, such as [Random Forest](https://en.wikipedia.org/wiki/Random_forest) and [Boosting](https://en.wikipedia.org/wiki/Boosting_(machine_learning) algorithms.
 
@@ -56,6 +61,7 @@ In this projects, several widely used algorithms are explored, including:
 - Stacked Models
 
 
+***
 ### Note:
 Detailed analysis can be found in my [blog](https://jifuzhao.github.io/2018/03/20/lending-club.html). Feel free to read through it.
 
