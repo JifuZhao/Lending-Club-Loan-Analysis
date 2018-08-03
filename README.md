@@ -60,6 +60,14 @@ In this projects, several widely used algorithms are explored, including:
 - Boosting
 - Stacked Models
 
+### Model Performance Comparison
+
+| Model                    | Logistic Regression | Random Forest | Random Forest | Boosting   | Boosting   |
+|----------------------------------------------------------------------------------------------------------|
+| Package                  | H2O                 | H2O           | LightGBM      | LightGBM   | CatBoost   |
+| Without oversampling AUC | 0.6982              | 0.7007        | 0.6882        | **0.7204** | **0.7222** |
+| With oversampling AUC    | 0.6982              | **0.7008**    | **0.6893**    | 0.7195     | 0.6814     |
+
 
 ***
 ### Note:
